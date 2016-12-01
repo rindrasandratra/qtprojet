@@ -10,6 +10,8 @@
 #include "cercle_widget.h"
 #include "score.h"
 #include "Acceuil.h"
+#include <QColor>
+#include <QPalette>
 
 
 /*##################################################################################################################"*/
@@ -97,14 +99,43 @@ Question::Question(int type, QWidget *parent) : QDialog(parent)
 
         affiche_question = new QTextEdit(question);
         affiche_question->setDisabled(true);
-        QColor couleur = (0,255,0,255);
-        affiche_question->setTextColor(couleur);
+        QPalette palette;
+        palette.setColor(QPalette::Base, QColor(88,224,65));
+        palette.setColor(QPalette::Text, QColor(255,255,255));
+        QFont font = affiche_question->font();
+        font.setBold(1);
+        affiche_question->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         affiche_question->setMaximumHeight(75);
+        affiche_question->setPalette(palette);
+        affiche_question->setFont(font);
+        affiche_question->setAlignment(Qt::AlignVCenter);
+        affiche_question->setAlignment(Qt::AlignCenter);
+
+
+
+        QPalette palette1;
+        QPalette palette2;
+        QPalette palette3;
+        QPalette palette4;
+        palette1.setColor(QPalette::Button, QColor(235,247,9));
+        palette2.setColor(QPalette::Button, QColor(12,192,252));
+        palette3.setColor(QPalette::Button, QColor(78,252,15));
+        palette4.setColor(QPalette::Button, QColor(137,15,252));
+
+
 
         affiche_reponse_1 = new QPushButton(reponse_1);
+        affiche_reponse_1->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        affiche_reponse_1->setPalette(palette1);
         affiche_reponse_2 = new QPushButton(reponse_2);
+        affiche_reponse_2->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        affiche_reponse_2->setPalette(palette2);
         affiche_reponse_3 = new QPushButton(reponse_3);
+        affiche_reponse_3->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        affiche_reponse_3->setPalette(palette3);
         affiche_reponse_4 = new QPushButton(reponse_4);
+        affiche_reponse_4->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        affiche_reponse_4->setPalette(palette4);
 
 
         lay->addWidget(affiche_question,0,0,1,2);
@@ -155,6 +186,9 @@ void Question::check_reponse(QString str){
 
     if (Score::nb_tour_jeu == Score::nb_tour_effectue){
         qDebug() << "please close";
+        QMessageBox gameover;
+        gameover.setText("GAME OVER");
+        gameover.exec();
         emit test_sign();
     }
 

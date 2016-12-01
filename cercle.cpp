@@ -26,7 +26,7 @@ Cercle::Cercle(double x, double y, double r)
 void Cercle::draw_cercle(){
     QPixmap *pix;
     pix = new QPixmap(r,r);
-    pix->fill(QColor(144,44,0));
+    pix->fill(QColor(0,0,0,0));
     //pix->fill(QColor(0,0,0,0));
     painter =  new QPainter(pix);
 
