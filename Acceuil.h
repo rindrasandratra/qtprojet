@@ -8,11 +8,8 @@ class Acceuil: public QWidget
 {
 public:
     Acceuil(QWidget *parent);
-
     QPushButton *demarer;
 
-public slots:
-    void slotDemarer();
 };
 
 #endif // ACCEUIL_H

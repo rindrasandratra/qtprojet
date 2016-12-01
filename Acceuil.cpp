@@ -25,14 +25,12 @@ Acceuil::Acceuil(QWidget *parent) : QWidget(parent)
 
     setLayout(lay);
 
-
-    connect(demarer,SIGNAL(clicked()),this,SLOT(slotDemarer()));
-}
-
-
-
-void Acceuil::slotDemarer()
-{
-    Cercle_widget game;
-    game.show();
+    Cercle_widget *game = new Cercle_widget;
+//    game->grabGesture(Qt::PanGesture);
+//    game->grabGesture(Qt::SwipeGesture);
+//    game->grabGesture(Qt::PinchGesture);
+//   // cx->grabGesture(Qt::TapGesture);
+//    game->grabGesture(Qt::TapAndHoldGesture);
+    connect(demarer,SIGNAL(clicked()),this->window(),SLOT(close()));
+    connect(demarer,SIGNAL(clicked()),game,SLOT(showMaximized()));
 }

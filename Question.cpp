@@ -142,8 +142,8 @@ void Question::check_reponse(QString str){
     }
     qDebug() << Score::nb_bonne_rep;
     qDebug() << Score::nb_tour_effectue;
-    texte_msg_box += "\nNombre de bonnes reponses: "+QString::number(Score::nb_bonne_rep);
-    texte_msg_box += "\nNombre de tours joués :"+QString::number(Score::nb_tour_effectue);
+    texte_msg_box += "\n\nNombre de bonnes reponses: "+QString::number(Score::nb_bonne_rep);
+    texte_msg_box += "\n\nNombre de tours joués :"+QString::number(Score::nb_tour_effectue);
     QMessageBox msgBox;
     msgBox.setText(texte_msg_box);
     msgBox.exec();

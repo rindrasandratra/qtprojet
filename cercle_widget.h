@@ -19,15 +19,14 @@ class Cercle_widget : public QWidget
     QGraphicsView *qv;
     QTime *duree;
     QTimer *timer;
-    Cercle_widget *cw;
+    QLabel *aig;
     int speed;
 
 public:
     explicit Cercle_widget(QWidget *parent = 0);
     void define_speed(int);
     int getAngle();
-    void plus_un_point();
-    void avancer_parti();
+    void draw_aiguille(int x, int y, int w, int h);
 
 signals:
 
@@ -43,9 +42,9 @@ protected:
 
 private:
     bool gestureEvent(QGestureEvent *event);
+    void mousePressEvent ( QMouseEvent * event );
+    void mouseReleaseEvent ( QMouseEvent * event );
     void affiche_question();
-
-    int score; //nombre de réponses justes du joueur
 };
 
 #endif // CERCLE_WIDGET_H
