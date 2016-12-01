@@ -18,14 +18,16 @@ SOURCES += main.cpp\
     cercle_widget.cpp \
     aiguille.cpp \
     Question.cpp \
-    score.cpp
+    score.cpp \
+    Acceuil.cpp
 
 HEADERS  += mainwindow.h \
     cercle.h \
     cercle_widget.h \
     aiguille.h \
     Question.h \
-    score.h
+    score.h \
+    Acceuil.h
     
 RESOURCES += ressource.qrc
 
