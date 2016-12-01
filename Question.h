@@ -38,6 +38,7 @@ public:
     int getNb_bonne_rep();
     void setNb_bonne_rep(int);
     static int nb_bonne_rep;
+    void check_reponse(QString str);
 
 signals:
 
