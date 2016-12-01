@@ -2,13 +2,17 @@
 #define ACCEUIL_H
 
 #include <QWidget>
+#include <QPushButton>
 
 class Acceuil: public QWidget
 {
 public:
-    Acceuil();
+    Acceuil(QWidget *parent);
 
-    QPushButton demarer;
+    QPushButton *demarer;
+
+public slots:
+    void slotDemarer();
 };
 
 #endif // ACCEUIL_H

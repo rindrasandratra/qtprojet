@@ -2,11 +2,12 @@
 #include "aiguille.h"
 #include <cercle_widget.h>
 #include <QVBoxLayout>
+#include "Acceuil.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
-    Cercle_widget *cx = new Cercle_widget();
+    Acceuil *cx = new Acceuil(this);
     setCentralWidget(cx);
 
 

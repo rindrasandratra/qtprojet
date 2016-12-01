@@ -2,6 +2,7 @@
 #include <QPushButton>
 #include <QLabel>
 #include <QVBoxLayout>
+#include <QPixmap>
 #include "cercle_widget.h"
 
 
@@ -9,13 +10,13 @@
 Acceuil::Acceuil(QWidget *parent) : QWidget(parent)
 {
     QLabel  *label_img  = new QLabel(this);
-    QPixmap *pixmap_img = new QPixmap(":/images.jpg");
+    QPixmap *pixmap_img = new QPixmap(":/ressource/images.jpeg");
     label_img->setPixmap(*pixmap_img);
     demarer = new QPushButton("démarrer la partie");
 
-    QVBoxLayout lay = new QVBoxLayout;
-    lay->addwidget(label_img);
-    lay->addwidget(demarrer);
+    QVBoxLayout *lay = new QVBoxLayout;
+    lay->addWidget(label_img);
+    lay->addWidget(demarer);
     setLayout(lay);
 
 
@@ -26,5 +27,6 @@ Acceuil::Acceuil(QWidget *parent) : QWidget(parent)
 
 void Acceuil::slotDemarer()
 {
-    Cercle_widget game = new Cercle_Widget();
+    Cercle_widget game;
+    game.show();
 }
