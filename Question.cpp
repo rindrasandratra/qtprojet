@@ -9,6 +9,7 @@
 #include <time.h>
 #include "cercle_widget.h"
 #include "score.h"
+#include "Acceuil.h"
 
 
 /*##################################################################################################################"*/
@@ -118,6 +119,10 @@ Question::Question(int type, QWidget *parent) : QDialog(parent)
         connect(affiche_reponse_2,SIGNAL(clicked()),this,SLOT(slotreponse_2()));
         connect(affiche_reponse_3,SIGNAL(clicked()),this,SLOT(slotreponse_3()));
         connect(affiche_reponse_4,SIGNAL(clicked()),this,SLOT(slotreponse_4()));
+        Acceuil *page_acc = new Acceuil(0);
+        connect(this,SIGNAL(test_sign()),page_acc,SLOT(showMaximized()));
+
+        //connect(this,SIGNAL(test_sign()),,SLOT());
 
     }
     else {
@@ -129,8 +134,12 @@ Question::Question(int type, QWidget *parent) : QDialog(parent)
 
 
 }
+void Question::test_slot(){
+    qDebug() << ",fkdf";
+}
+
 void Question::check_reponse(QString str){
-    QString texte_msg_box;
+    QString texte_msg_box = "\n\n";
     Score::nb_tour_effectue++;
     if (str == reponse_juste){
         texte_msg_box = "Bonne réponse";
@@ -140,15 +149,20 @@ void Question::check_reponse(QString str){
     {
         texte_msg_box = "Mauvaise réponse";
     }
-    qDebug() << Score::nb_bonne_rep;
-    qDebug() << Score::nb_tour_effectue;
     texte_msg_box += "\n\nNombre de bonnes reponses: "+QString::number(Score::nb_bonne_rep);
-    texte_msg_box += "\n\nNombre de tours joués :"+QString::number(Score::nb_tour_effectue);
+    texte_msg_box += "\n\nNombre de tours joués :"+QString::number(Score::nb_tour_effectue)+"\n\n";
     QMessageBox msgBox;
     msgBox.setText(texte_msg_box);
     msgBox.exec();
+
+    if (Score::nb_tour_jeu == Score::nb_tour_effectue){
+        qDebug() << "please close";
+        emit test_sign();
+    }
+
     this->close();
 }
+
 
 //afficher les réponses
 

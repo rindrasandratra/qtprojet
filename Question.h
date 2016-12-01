@@ -41,12 +41,13 @@ public:
     void check_reponse(QString str);
 
 signals:
-
+    void test_sign();
 public slots:
     void slotreponse_1();
     void slotreponse_2();
     void slotreponse_3();
     void slotreponse_4();
+    void test_slot();
 };
 
 #endif // QUESTION_H

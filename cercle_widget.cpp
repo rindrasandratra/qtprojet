@@ -122,10 +122,9 @@ void Cercle_widget::affiche_question(){
     question->setModal(true);
     //question->setSizePolicy(QSizePolicy::Maximum);
     question->showMaximized();
+    connect(question,SIGNAL(test_sign()),this,SLOT(close()));
     qDebug() << "fin de la fonction";
-    // question->setVisible(true);
 }
-
 
 
 void Cercle_widget::stop_rotation(){
