@@ -1,0 +1,20 @@
+2
+-
+Docteur J. W. Müller est ?
+
+Un gentil monsieur
+Un medecin de campagne
+Un criminel
+Un spécialiste de la théorie des cordes
+
+Vert
+-
+De quelle couleur est le soleil ?
+
+Jaune
+Rouge
+Vert
+Bleu
+
+Vert
+-
