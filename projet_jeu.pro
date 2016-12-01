@@ -16,7 +16,6 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     cercle.cpp \
     cercle_widget.cpp \
-    aiguille.cpp \
     Question.cpp \
     score.cpp \
     Acceuil.cpp
@@ -24,7 +23,6 @@ SOURCES += main.cpp\
 HEADERS  += mainwindow.h \
     cercle.h \
     cercle_widget.h \
-    aiguille.h \
     Question.h \
     score.h \
     Acceuil.h

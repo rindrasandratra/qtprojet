@@ -1,5 +1,4 @@
 #include "mainwindow.h"
-#include "aiguille.h"
 #include <cercle_widget.h>
 #include <QVBoxLayout>
 #include "Acceuil.h"

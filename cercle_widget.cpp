@@ -1,5 +1,4 @@
 #include "cercle_widget.h"
-#include "aiguille.h"
 #include <QVBoxLayout>
 #include <QGraphicsScene>
 #include <QGraphicsView>
