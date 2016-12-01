@@ -129,91 +129,44 @@ Question::Question(int type, QWidget *parent) : QDialog(parent)
 
 
 }
+void Question::check_reponse(QString str){
+    QString texte_msg_box;
+    Score::nb_tour_effectue++;
+    if (str == reponse_juste){
+        texte_msg_box = "Bonne réponse";
+        Score::nb_bonne_rep++;
+    }
+    else
+    {
+        texte_msg_box = "Mauvaise réponse";
+    }
+    qDebug() << Score::nb_bonne_rep;
+    qDebug() << Score::nb_tour_effectue;
+    texte_msg_box += "\nNombre de bonnes reponses: "+QString::number(Score::nb_bonne_rep);
+    texte_msg_box += "\nNombre de tours joués :"+QString::number(Score::nb_tour_effectue);
+    QMessageBox msgBox;
+    msgBox.setText(texte_msg_box);
+    msgBox.exec();
+    this->close();
+}
 
 //afficher les réponses
 
 void Question::slotreponse_1(){
-    Score::value++;
-    qDebug() << "dd : " << Score::value;
-    if (affiche_reponse_1->text() == reponse_juste){
-        QMessageBox msgBox;
-        msgBox.setText("Bonne réponse !");
-        msgBox.exec();
-        reponse = 1;
-        tour_fini = 1;
-        this->close();
-    }
-    else
-    {
-        QMessageBox msgBox;
-        msgBox.setText("Mauvaise réponse :-(");
-        msgBox.exec();
-        this->close();
-    }
-
+    check_reponse(affiche_reponse_1->text());
 }
 
-void Question::slotreponse_2(){
-    if (affiche_reponse_2->text() == reponse_juste)
-    {
-        QMessageBox msgBox;
-        msgBox.setText("Bonne réponse !");
-        msgBox.exec();
-        reponse = 1;
-        tour_fini = 1;
-        this->close();
-    }
-    else
-    {
-        QMessageBox msgBox;
-        msgBox.setText("Mauvaise réponse :-(");
-        msgBox.exec();
-        tour_fini = 1;
-        this->close();
-    }
 
+void Question::slotreponse_2(){
+    check_reponse(affiche_reponse_2->text());
 }
 
 void Question::slotreponse_3(){
-    if (affiche_reponse_3->text() == reponse_juste)
-    {
-        QMessageBox msgBox;
-        msgBox.setText("Bonne réponse !");
-        msgBox.exec();
-        reponse = 1;
-        tour_fini = 1;
-        this->close();
-    }
-    else
-    {
-        QMessageBox msgBox;
-        msgBox.setText("Mauvaise réponse :-(");
-        msgBox.exec();
-        tour_fini = 1;
-        this->close();
-    }
-
+    check_reponse(affiche_reponse_3->text());
 }
 
 void Question::slotreponse_4(){
-    if (affiche_reponse_4->text() == reponse_juste)
-    {
-        QMessageBox msgBox;
-        msgBox.setText("Bonne réponse !");
-        msgBox.exec();
-        reponse = 1;
-        tour_fini = 1;
-        this->close();
-    }
-    else
-    {
-        QMessageBox msgBox;
-        msgBox.setText("Mauvaise réponse :-(");
-        msgBox.exec();
-        tour_fini = 1;
-        this->close();
-    }
-
+    check_reponse(affiche_reponse_4->text());
 }
 
 int Question::getTour()
