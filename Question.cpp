@@ -122,8 +122,6 @@ Question::Question(int type, QWidget *parent) : QDialog(parent)
         Acceuil *page_acc = new Acceuil(0);
         connect(this,SIGNAL(test_sign()),page_acc,SLOT(showMaximized()));
 
-        //connect(this,SIGNAL(test_sign()),,SLOT());
-
     }
     else {
         QMessageBox msgBox;

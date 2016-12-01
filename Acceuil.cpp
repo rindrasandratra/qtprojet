@@ -48,11 +48,6 @@ Acceuil::Acceuil(QWidget *parent) : QWidget(parent)
     setLayout(lay);
 
     Cercle_widget *game = new Cercle_widget;
-//    game->grabGesture(Qt::PanGesture);
-//    game->grabGesture(Qt::SwipeGesture);
-//    game->grabGesture(Qt::PinchGesture);
-//   // cx->grabGesture(Qt::TapGesture);
-//    game->grabGesture(Qt::TapAndHoldGesture);
     connect(demarer,SIGNAL(clicked()),this->window(),SLOT(close()));
     connect(demarer,SIGNAL(clicked()),game,SLOT(showMaximized()));
 }

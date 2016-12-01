@@ -20,7 +20,6 @@ Cercle_widget::Cercle_widget(QWidget *parent) : QWidget(parent)
     aig = new QLabel;
     aig->setAlignment(Qt::AlignCenter);
 
-    btn_rotate = new QPushButton("rotation");
 
     scene = new QGraphicsScene;
     qv = new QGraphicsView(scene);
@@ -38,13 +37,10 @@ Cercle_widget::Cercle_widget(QWidget *parent) : QWidget(parent)
     double h = qv->height()/3;
 
     draw_aiguille(r,0,7,20);
-    layout->addWidget(btn_rotate);
     layout->addWidget(aig,1,0);
     layout->addWidget(qv,2,0);
 
     duree = new QTime;
-    connect(btn_rotate,SIGNAL(pressed()),this,SLOT(start_rotation()));
-    connect(btn_rotate,SIGNAL(released()),this,SLOT(release_btn()));
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(anim_rotation()));
@@ -79,16 +75,19 @@ void Cercle_widget::anim_rotation(){
     c->rotation_anim();
 }
 
-void Cercle_widget::start_rotation(){
-    btn_rotate->setText("attente appui");
+
+void Cercle_widget::mousePressEvent ( QMouseEvent * event ){
+    this->grabMouse();
     duree->start();
+}
+void Cercle_widget::mouseReleaseEvent ( QMouseEvent * event ){
+    this->releaseMouse();
+    release_btn();
 }
 
 void Cercle_widget::release_btn(){
     timer->stop();
     int d =duree->elapsed() ;
-    btn_rotate->setText("Duree rotation : "+QString::number(d));
-    qDebug() << "Duree rotation" << duree->elapsed() << "milliseconds";
     speed = 10;
     timer->start(speed);
     define_speed(d);
@@ -108,6 +107,11 @@ void  Cercle_widget::update_interval()
     timer->setInterval(speed);
 }
 
+void Cercle_widget::stop_rotation(){
+    timer->stop();
+    affiche_question();
+}
+
 
 void Cercle_widget::affiche_question(){
 
@@ -117,64 +121,12 @@ void Cercle_widget::affiche_question(){
     else if (c->getAngle() < 216) i = 3;
     else if (c->getAngle() < 288) i = 4;
     else if (c->getAngle() < 360) i = 5;
-    //qDebug() << i;
     Question *question = new Question(i);
     question->setModal(true);
-    //question->setSizePolicy(QSizePolicy::Maximum);
     question->showMaximized();
     connect(question,SIGNAL(test_sign()),this,SLOT(close()));
-    qDebug() << "fin de la fonction";
 }
 
-
-void Cercle_widget::stop_rotation(){
-    qDebug() << "fini";
-    timer->stop();
-    affiche_question();
-}
-bool Cercle_widget::event(QEvent *event)
-{
-    if (event->type() == QEvent::Gesture)
-        return gestureEvent(static_cast<QGestureEvent*>(event));
-    return QWidget::event(event);
-}
-
-void Cercle_widget::mousePressEvent ( QMouseEvent * event ){
-    qDebug() << "niha";
-}
-void Cercle_widget::mouseReleaseEvent ( QMouseEvent * event ){
-    qDebug() << "vfdk";
-}
-
-bool Cercle_widget::gestureEvent(QGestureEvent *event){
-
-    qDebug() << "gestureEvent():" << event;
-    //    if (QGesture *swipe = event->gesture(Qt::SwipeGesture))
-    //    {
-    //         qDebug() << "SwipeGesture";
-    //         return true;
-    //    }
-    //    if (QGesture *pan = event->gesture(Qt::PanGesture))
-    //    {
-    //        qDebug() << "PanGesture";
-    //        return true;
-    //    }
-    //    if (QGesture *pinch = event->gesture(Qt::PinchGesture))
-    //    {
-    //        qDebug() << "PinchGesture";
-    //        return true;
-    //    }
-    //    if (QGesture *tap = event->gesture(Qt::TapGesture))
-    //    {
-    //        qDebug() << "TapGesture";
-    //        return true;
-    //    }
-    //    if (QGesture *taphold = event->gesture(Qt::TapAndHoldGesture))
-    //    {
-    //        qDebug() << "TapAndHoldGesture";
-    //        return true;
-    //    }
-}
 
 int Cercle_widget::getAngle(){
     return c->getAngle();

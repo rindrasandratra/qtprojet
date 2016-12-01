@@ -14,7 +14,6 @@ class Cercle_widget : public QWidget
 {
     Q_OBJECT
     Cercle *c;
-    QPushButton *btn_rotate;
     QGraphicsScene *scene;
     QGraphicsView *qv;
     QTime *duree;
@@ -27,23 +26,20 @@ public:
     void define_speed(int);
     int getAngle();
     void draw_aiguille(int x, int y, int w, int h);
+    void release_btn();
 
 signals:
 
 public slots:
-    void start_rotation();
-    void release_btn();
     void anim_rotation();
     void stop_rotation();
     void update_interval();
 
 protected:
-    bool event(QEvent *event) Q_DECL_OVERRIDE;
+    void mouseReleaseEvent(QMouseEvent *event);
+    void mousePressEvent(QMouseEvent *event);
 
 private:
-    bool gestureEvent(QGestureEvent *event);
-    void mousePressEvent ( QMouseEvent * event );
-    void mouseReleaseEvent ( QMouseEvent * event );
     void affiche_question();
 };
 

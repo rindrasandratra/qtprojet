@@ -75,37 +75,13 @@ void Cercle::rotation_anim(){
     setRotation(angle_rotation);
 }
 
-bool Cercle::event(QEvent *event)
-{
-    qDebug() << "event";
-    if (event->type() == QEvent::Gesture)
-        return gestureEvent(static_cast<QGestureEvent*>(event));
-    return Cercle::event(event);
-}
-
-bool Cercle::gestureEvent(QGestureEvent *event)
-{
-
-    qDebug() << "gest event";
-    if (QGesture *pan = event->gesture(Qt::PanGesture))
-        panTriggered(static_cast<QPanGesture *>(pan));
-    return true;
-}
-
-void Cercle::panTriggered(QPanGesture*)
-{
-    qDebug() << "paaaaaaaaaaaaaaaaan";
-}
-
-
 int Cercle::getAngle()
 {
-    if (angle_rotation <= 360) return angle_rotation;
+    if (angle_rotation <= 360)
+        return angle_rotation;
     else
     {
         int mult = angle_rotation/360;
-        //qDebug() << mult;
-        //qDebug() << angle_rotation;
         angle_rotation = angle_rotation - mult*360;
         return angle_rotation;
     }

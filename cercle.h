@@ -14,16 +14,12 @@ private:
     int center_x, center_y, angle_rotation;
     double x,y,r;
     QPainter *painter;
-    bool gestureEvent(QGestureEvent *event);
-    void panTriggered(QPanGesture*);
 public:
     Cercle();
     Cercle(double, double, double);
     void draw_cercle();
     void rotation_anim();
     int getAngle();
-protected:
-    bool event(QEvent *event);
 };
 
 #endif // CERCLE_H
