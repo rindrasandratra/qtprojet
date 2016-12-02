@@ -27,7 +27,6 @@ void Cercle::draw_cercle(){
     QPixmap *pix;
     pix = new QPixmap(r,r);
     pix->fill(QColor(0,0,0,0));
-    //pix->fill(QColor(0,0,0,0));
     painter =  new QPainter(pix);
 
     painter->setRenderHint(QPainter::Antialiasing, true);
@@ -54,10 +53,10 @@ void Cercle::draw_cercle(){
         float x_text = (r/3)*cos(deg_texte) + center_x;
         float y_text = (r/3)*sin(deg_texte) + center_y;
 
-        float dim = r/35.0;
+        float dim = r/30.0;
         painter->setPen(QPen(Qt::white));
         painter->setBrush(Qt::white);
-        painter->drawEllipse(QPointF(x_text+2,y_text-2),dim,dim);
+        painter->drawEllipse(QPointF(x_text+5,y_text-5),dim,dim);
 
         painter->setPen(QPen(Qt::black));
         painter->drawText(x_text,y_text,QString::number(i));

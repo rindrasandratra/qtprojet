@@ -16,27 +16,25 @@ Cercle_widget::Cercle_widget(QWidget *parent) : QWidget(parent)
     QGridLayout *layout = new QGridLayout(this);
     layout->setSpacing(0);
 
-
     aig = new QLabel;
     aig->setAlignment(Qt::AlignCenter);
 
-
     scene = new QGraphicsScene;
     qv = new QGraphicsView(scene);
-    qDebug()<< "scene w : " << scene->width() << " h : " << scene->height();
     qv->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     qv->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    qv->setSceneRect(0, 0, scene->width(), scene->height());
     qv->setStyleSheet( "QGraphicsView { border-style: none; }");
     c = new Cercle(0,0,qv->width());
-
     scene->addItem(c);
+    qv->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
 
-
+    QRect rec = QApplication::desktop()->availableGeometry();
     double r = qv->width();
     double h = qv->height()/3;
-
-    draw_aiguille(r,0,7,20);
+    if (rec.width() < rec.height())
+        draw_aiguille(r,0,7,h);
+    else
+        draw_aiguille(r,0,7,20);
     layout->addWidget(aig,1,0);
     layout->addWidget(qv,2,0);
 
@@ -114,17 +112,11 @@ void Cercle_widget::stop_rotation(){
 
 
 void Cercle_widget::affiche_question(){
-
-    int i = 1;
-    if (c->getAngle() < 72) i =1;
-    else if (c->getAngle() < 144) i = 2;
-    else if (c->getAngle() < 216) i = 3;
-    else if (c->getAngle() < 288) i = 4;
-    else if (c->getAngle() < 360) i = 5;
+    int i = ceil(c->getAngle()/72.0);
     Question *question = new Question(i);
     question->setModal(true);
     question->showMaximized();
-    connect(question,SIGNAL(test_sign()),this,SLOT(close()));
+    connect(question,SIGNAL(game_over()),this,SLOT(close()));
 }
 
 

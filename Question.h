@@ -22,8 +22,6 @@ private :
     QString reponse_4;
     QString reponse_juste;
     int nb_question;
-    int tour_fini;
-    int reponse;
 
     QTextEdit *affiche_question;
     //QLabel *affiche_question;
@@ -31,23 +29,27 @@ private :
     QPushButton *affiche_reponse_2;
     QPushButton *affiche_reponse_3;
     QPushButton *affiche_reponse_4;
+    QFile *fichier;
 public:
     explicit Question(int,QWidget *parent = 0);
-    int getTour();
-    int getReponse();
     int getNb_bonne_rep();
     void setNb_bonne_rep(int);
     static int nb_bonne_rep;
     void check_reponse(QString str);
+    void end_game();
+    void reset_game();
+    void select_file(int type);
+    void read_question_reponse(QFile *fichier);
+    void affiche_questions();
+    void affiche_reponses();
 
 signals:
-    void test_sign();
+    void game_over();
 public slots:
     void slotreponse_1();
     void slotreponse_2();
     void slotreponse_3();
     void slotreponse_4();
-    void test_slot();
 };
 
 #endif // QUESTION_H
